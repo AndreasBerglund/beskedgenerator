@@ -12,6 +12,13 @@ const mainReducer = (state, action) => {
         greeting : generateGreeting(state.name, state.age, state.memory)
       }
     }
+    case "copy" : {
+      const copied = action.payload
+      return {
+        ...state,
+        copied : copied
+      }
+    }
     case "onchange": {
       const [name, value] = action.payload;
       return {
@@ -30,7 +37,8 @@ export const MainProvider = ({ children }) => {
     greeting : "Tillykke min ven! Vi ses snart!",
     name : "Jens",
     age : null,
-    memory: ""
+    memory: "",
+    copied: false
   };
 
   const [state, dispatch] = useReducer(mainReducer, mainInitialState);
