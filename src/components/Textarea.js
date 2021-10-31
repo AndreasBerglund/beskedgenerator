@@ -3,16 +3,19 @@ import styled from "styled-components";
 import { StateMainContext } from "../context/MainProvider";
 
 const Textarea = () => {
-  const { message } = useContext(StateMainContext);
+  const { greeting } = useContext(StateMainContext);
   return (
     <STextarea>
-      <textarea value={message} readOnly name="message" />
+      <textarea value={greeting} readOnly name="greeting" />
     </STextarea>
   );
 };
 
 const STextarea = styled.div`
-  background-color: red;
+
+  flex: 1;
+  margin-bottom: 30px;
+  
   textarea {
     border: none;
     overflow: auto;
@@ -24,9 +27,11 @@ const STextarea = styled.div`
 
     resize: none; /*remove the resize handle on the bottom right*/
     width: 100%;
+    height: 100%;
     border-radius: 5px;
     background-color: ${(props) => props.theme.colors.lg};
-  }
+    padding: 20px;
+    font-size: 20px;
 `;
 
 export default Textarea;

@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const Header = () => {
   return <SHeader>
-      <p>❤</p>
-      <p>Fødselsdagsbeskedgenerator</p>
+      <h3>❤</h3>
+      <h3>Fødselsdagsbeskedgenerator<sup>™</sup></h3>
   </SHeader>;
 };
 

@@ -13,3 +13,8 @@ body, #root, .App {
     flex-direction: column;
     align-items: center;
 }
+
+h3 { 
+    font-size: 20px;
+    font-weight: bold;
+}
