@@ -19,10 +19,16 @@ export const generateGreeting = (name, age, memory) => {
     `Kæreste ${
       name || genericName()
     } 🍰, tillykke med dagen idag! Håber du får en herlig og festlig dag 🎉.`,
+    `Huuuurrrra for dig, ${ name || genericName()} 🇩🇰🇩🇰🇩🇰, håber du bliver passet på!`,
+    `Hej ${ name || genericName()}, Hest hest hest, idag får du en fest 🎉🎂🍾`,
+    `Idag er det ${ name || genericName()}'s fødselsdag, hurra hurra hurraa!`,
   ];
   const happySentence = happies[getRandomInArray(happies)];
 
   const agies = [
+    `Tillykke med de ${age} år 💪`,
+    `${age} somre! Det er flot.`,
+    `${age} år! Det klæder dig! 😘`,
     `${age} år er for vild en alder!`,
     `${age} år er ingenting. Det bliver meget værre! 😂😂😂`,
   ];
@@ -47,17 +53,6 @@ export const generateGreeting = (name, age, memory) => {
 };
 
 //🎉🎂🍾😍😘💝💖😻🍰🍷🍺💪🇩🇰♥
-// Hej min sødeste ven, tillykke med fødselsdagen 🎁 🎁 🎁
-// Hej søde {{ name }}, tillykke med fødselsdagen
-// Hej søde {{ name }}, tillykke med de {{ age }} år!
-// Hurraaaaa! {{ name }} har fødselsdag og det har hen jo og det er idag!
-
-// {{ age }} år er for vild en alder!
-// {{ age }} år er ingenting. Det bliver meget værre!
-
-// Kan du huske dengang med {{ memory }}?
-// Det var vildt dengang da vi {{ memory }}
-// Jeg husker tydeligt dengang med {{ memory }}
 
 // Får du også skriveblokering og præstationsangst når du skal skrive en hilsen til en ven der har fødselsdag?
 // Det er slut nu! Jeg har nemlig lavet FØDSELSDAGSBESKEDGENERATOREN™, som genererer de mest originale generiske hilsener der findes!
@@ -78,6 +73,10 @@ const genericName = () => {
     "hotpants",
     "snuske",
     "basse",
+    "bae",
+    "nussi",
+    "honey",
+    "prinsesse honningblomst"
   ];
   return names[getRandomInArray(names)];
 };
