@@ -35,7 +35,7 @@ const mainReducer = (state, action) => {
 export const MainProvider = ({ children }) => {
   const mainInitialState = {
     greeting : "Tillykke min ven! Vi ses snart!",
-    name : "Jens",
+    name : "",
     age : null,
     memory: "",
     copied: false
