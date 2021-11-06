@@ -68,7 +68,7 @@ const getRandomInArray = (array) => {
 const getRandomSetOfEmojis = () => {
   const set = "🎉🎂🍾😍🥂😄😂😘😍💝💖💕🎈😻🍰🍷🍺💪♥🌷☕️🎂🎁🎁🎁";
   const emojiArray = [...set, "🇩🇰"];
-  const length = Math.floor(Math.random() * 5);
+  const length = Math.floor(Math.random() * 7);
   const selectedEmojiArray = [];
   for ( let i = 0; i < length; i++) {
     selectedEmojiArray.push( emojiArray[getRandomInArray(emojiArray)] );
