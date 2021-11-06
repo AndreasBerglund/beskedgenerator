@@ -30,6 +30,9 @@ export const generateGreeting = (name, age, memory) => {
   const happySentence = happies[getRandomInArray(happies)];
 
   const agies = [
+    `Tillykke med de ${age} år 💪`,
+    `${age} somre! Det er flot.`,
+    `${age} år! Det klæder dig! 😘`,
     `${age} år er for vild en alder!`,
     `${age} år er ingenting. Det bliver meget værre! 😂😂😂`,
     `Tillykke med de ${age} år. ${getRandomSetOfEmojis()}`,
@@ -85,6 +88,10 @@ const genericName = () => {
     "hotpants",
     "snuske",
     "basse",
+    "bae",
+    "nussi",
+    "honey",
+    "prinsesse honningblomst"
   ];
   return names[getRandomInArray(names)];
 };
