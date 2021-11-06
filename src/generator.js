@@ -74,7 +74,7 @@ const getRandomSetOfEmojis = () => {
     selectedEmojiArray.push( emojiArray[getRandomInArray(emojiArray)] );
   }
   console.log(selectedEmojiArray)
-  return selectedEmojiArray.toString()
+  return selectedEmojiArray.join("")
 }
 
 const genericName = () => {
