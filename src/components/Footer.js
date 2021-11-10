@@ -5,8 +5,8 @@ import githubLogo from "./github.png";
 const Footer = () => {
   return (
     <SFooter>
-      <a href="https://www.github.com/AndreasBerglund" target="_blank">
-        <img src={githubLogo} /> Github
+      <a href="https://www.github.com/AndreasBerglund" target="_blank"  rel="noreferrer" >
+        <img alt="github mark" src={githubLogo} /> Github
       </a>
     </SFooter>
   );
