@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Footer from "./Footer";
 
 import { Form } from "./Form";
 
@@ -11,6 +12,7 @@ const Main = () => {
     <SMain>
       <Textarea />
       <Form />
+      <Footer />
     </SMain>
   );
 };
