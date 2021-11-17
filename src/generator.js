@@ -3,31 +3,34 @@
  * @param {string} name
  * @param {number} age
  * @param {string} memory
+ * @param {boolean} christmas
  * @returns generated greeting
  */
 
-export const generateGreeting = (name, age, memory) => {
+export const generateGreeting = (name, age, memory, christmas) => {
   //happy with or without name sentence
   const happies = [
     `Hej min sødeste ${
-      name || genericName()
-    }, tillykke med fødselsdagen ${getRandomSetOfEmojis()}!!`,
+      name || genericName(christmas)
+    }, tillykke med fødselsdagen ${getRandomSetOfEmojis(christmas)}!!`,
     `${name || genericName()}, dit gamle røvhul! 🍺 Så blev du sørme gammel.`,
     `${
-      name || genericName()
+      name || genericName(christmas)
     }, din smukke skabning. 💖 Endnu et år i dit dejlige selskab er gået! 😘`,
     `Kæreste ${
-      name || genericName()
+      name || genericName(christmas)
     } 🍰, tillykke med dagen idag! Håber du får en herlig og festlig dag 🎉.`,
     `Tillykke med fødselsdagen 🇩🇰🇩🇰🇩🇰`,
     `Kære ${
-      name || genericName()
+      name || genericName(christmas)
     }. Jeg ønsker dig hjertelig tillykke med fødselsdagen.`,
-    `Tillykke med fødselsdagen ${name || genericName()}. `,
-    `Stort tillykke med fødselsdagen ${name || genericName()}. ${getRandomSetOfEmojis()}`,
-    `Hej ${ name || genericName()} - tillykke med fødselsdagen. ${getRandomSetOfEmojis()}`,
+    `Tillykke med fødselsdagen ${name || genericName(christmas)}. `,
+    `Stort tillykke med fødselsdagen ${name || genericName(christmas)}. ${getRandomSetOfEmojis(christmas)}`,
+    `Hej ${ name || genericName(christmas)} - tillykke med fødselsdagen. ${getRandomSetOfEmojis(christmas)}`,
   ];
-  const happySentence = happies[getRandomInArray(happies)];
+  
+  const happySentence = christmas ? christmasify(happies[getRandomInArray(happies)]) : happies[getRandomInArray(happies)];
+  
 
   const agies = [
     `Tillykke med de ${age} år 💪`,
@@ -35,26 +38,25 @@ export const generateGreeting = (name, age, memory) => {
     `${age} år! Det klæder dig! 😘`,
     `${age} år er for vild en alder!`,
     `${age} år er ingenting. Det bliver meget værre! 😂😂😂`,
-    `Tillykke med de ${age} år. ${getRandomSetOfEmojis()}`,
-    `Tillykke med de ${age} år i dag. ${getRandomSetOfEmojis()}`,
-    `Stort tillykke med de ${age} år. ${getRandomSetOfEmojis()}`,
-
+    `Tillykke med de ${age} år. ${getRandomSetOfEmojis(christmas)}`,
+    `Tillykke med de ${age} år i dag. ${getRandomSetOfEmojis(christmas)}`,
+    `Stort tillykke med de ${age} år. ${getRandomSetOfEmojis(christmas)}`,
   ];
-  const ageSentence = agies[getRandomInArray(agies)];
+  const ageSentence = christmas ? christmasify( agies[getRandomInArray(agies)], true ) : agies[getRandomInArray(agies)];
 
   //memory sentence
   const mem = [
-    `Kan du huske dengang med ${memory}? ${getRandomSetOfEmojis()}`,
+    `Kan du huske dengang med ${memory}? ${getRandomSetOfEmojis(christmas)}`,
     `Det var vildt dengang med ${memory} 💪`,
     `Jeg husker tydeligt dengang med ${memory}`,
     `Det var skønne tider da vi lavede det med ${memory} 😍`,
   ];
-  const memsentence = memory ? mem[getRandomInArray(mem)] : "";
+  const memsentence = memory ? mem[getRandomInArray(mem)] : christmas ? mem[getRandomInArray(mem)] : "";
 
   return (
     capitalize(happySentence) +
     " " +
-    (fiftyFifty() ? getExtraSpice() : "") +
+    (fiftyFifty() ? getExtraSpice(christmas) : "") +
     " " +(age ? ageSentence : "") +
     " " +
     memsentence
@@ -65,19 +67,20 @@ const getRandomInArray = (array) => {
   return Math.floor(Math.random() * array.length);
 };
 
-const getRandomSetOfEmojis = () => {
-  const set = "🎉🎂🍾😍🥂😄😂😘😍💝💖💕🎈😻🍰🍷🍺💪♥🌷☕️🎂🎁🎁🎁";
+const getRandomSetOfEmojis = (christmas) => {
+  const set = christmas ? "🎄🎅🎅🤶🎅🏼" : "🎉🎂🍾😍🥂😄😂😘😍💝💖💕🎈😻🍰🍷🍺💪♥🌷☕️🎂🎁🎁🎁";
+  
   const emojiArray = [...set, "🇩🇰"];
   const length = Math.floor(Math.random() * 7);
   const selectedEmojiArray = [];
   for ( let i = 0; i < length; i++) {
     selectedEmojiArray.push( emojiArray[getRandomInArray(emojiArray)] );
   }
-  console.log(selectedEmojiArray)
+  
   return selectedEmojiArray.join("")
 }
 
-const genericName = () => {
+const genericName = (christmas) => {
   const names = [
     "søtte",
     "ven",
@@ -93,7 +96,7 @@ const genericName = () => {
     "honey",
     "prinsesse honningblomst"
   ];
-  return names[getRandomInArray(names)];
+  return christmas ? "Juleven" : names[getRandomInArray(names)];
 };
 
 export const getRandomCheckText = () => {
@@ -109,14 +112,14 @@ export const getRandomCheckText = () => {
   return check[getRandomInArray(check)];
 };
 
-export const getExtraSpice = () => {
+export const getExtraSpice = (christmas) => {
   const spice = [
     "Håber du bliver fejret med manér. 🥂😄",
     `Håber du har det godt. ${getRandomSetOfEmojis()}`,
     "Ønsker dig en herlig dag med familien.",
     `Håber du får en dejlig dag. ${getRandomSetOfEmojis()}`,
   ];
-  return spice[getRandomInArray(spice)];
+  return christmas ? christmasify( spice[getRandomInArray(spice)], true ) :  spice[getRandomInArray(spice)];
 };
 
 function capitalize(s) {
@@ -128,7 +131,25 @@ const fiftyFifty = () => {
   return chance > 0.5;
 };
 
-
+const christmasify = (sentence, atJesus) => {
+  let christmassed = sentence;
+  if ( atJesus) {
+    christmassed = christmassed.replace("dig", "JESUS");
+    christmassed = christmassed.replace("tillykke", "tillykke til JESUS");
+    christmassed = christmassed.replace("Tillykke", "Tillykke til JESUS");
+    christmassed = christmassed.replace("du", "JESUS");
+  } else {
+    christmassed = sentence.replace("fødselsdagen", "JUL");
+    christmassed = christmassed.replace(" dagen", "JUL");
+    christmassed = christmassed.replace("tillykke med", "glædelig");
+    christmassed = christmassed.replace("Tillykke med", "glædelig");
+    christmassed = christmassed.replace(" dag", " JUL ");
+    // christmassed = christmassed.replace("du", "JESUS");
+    christmassed = christmassed.replace(" tillykke ", "Glædelig jul");
+    christmassed = christmassed.replace(" Tillykke ", "Glædelig jul");
+  }
+  return christmassed;
+}
 
 // Får du også skriveblokering og præstationsangst når du skal skrive en hilsen til en ven der har fødselsdag?
 // Det er slut nu! Jeg har nemlig lavet FØDSELSDAGSBESKEDGENERATOREN™, som genererer de mest originale generiske hilsener der findes!

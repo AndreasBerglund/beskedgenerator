@@ -9,7 +9,7 @@ const mainReducer = (state, action) => {
     case "updategreeting" : {
       return {
         ...state,
-        greeting : generateGreeting(state.name, state.age, state.memory)
+        greeting : generateGreeting(state.name, state.age, state.memory, state.christmas)
       }
     }
     case "copy" : {
@@ -21,10 +21,20 @@ const mainReducer = (state, action) => {
     }
     case "onchange": {
       const [name, value] = action.payload;
-      return {
-        ...state,
-        [name] : value
-      };
+      if ( name === "christmas" ) {
+        return {
+          ...state,
+          age : state.christmas ? state.age : 2021,
+          name : state.christmas ? state.name : "JULEVEN",
+          memory : state.christmas ? state.memory :"JULEAFTEN",
+          christmas: !state.christmas
+        }
+      } else {
+        return {
+          ...state,
+          [name] : value
+        };
+      }
     }
     default : {
       return { ...state }
@@ -38,6 +48,7 @@ export const MainProvider = ({ children }) => {
     name : "",
     age : null,
     memory: "",
+    christmas : false,
     copied: false
   };
 

@@ -1,6 +1,15 @@
-export const theme = {
+export const redTheme = {
   colors: {
-    red: "#f03a17",
+    primary: "#f03a17",
+    lg: "#ebebeb",
+    mg: "#707070",
+    dg: "#222",
+  },
+};
+
+export const blueTheme = {
+  colors: {
+    primary: "#0d1757",
     lg: "#ebebeb",
     mg: "#707070",
     dg: "#222",
